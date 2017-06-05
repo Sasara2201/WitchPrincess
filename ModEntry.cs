@@ -55,6 +55,8 @@ namespace WitchPrincess
 
             // swap dialogue
             Game1.activeClickableMenu = new DialogueBox(new Dialogue("hehehe..", Game1.getCharacterFromName("Wizard")));
+            string text = this.Helper.Translation.Get("laugh");
+            Game1.activeClickableMenu = new DialogueBox(new Dialogue(text, Game1.getCharacterFromName("Wizard")));
         }
 
         /// <summary>Add the witch princess' spouse room to the farmhouse.</summary>
