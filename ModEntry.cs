@@ -45,7 +45,12 @@ namespace WitchPrincess
         {
             // check dialogue conditions
             var dialogue = e.NewMenu as DialogueBox;
-            if (dialogue == null || Game1.currentSpeaker?.name != "Wizard" || Game1.CurrentEvent?.FestivalName == null || !dialogue.getCurrentString().Contains("..."))
+            if (dialogue == null || Game1.currentSpeaker?.name != "Wizard" || Game1.CurrentEvent?.FestivalName == null)
+                return;
+
+            // check dialogue text
+            var dialogueStr = dialogue?.getCurrentString();
+            if (!dialogueStr.Contains("用") && !dialogueStr.Contains("...") && !dialogueStr.Contains("sí") && !dialogueStr.Contains("么") && !dialogueStr.Contains("の"))
                 return;
 
             // check for flower festival
