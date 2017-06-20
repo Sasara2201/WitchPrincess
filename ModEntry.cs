@@ -23,6 +23,7 @@ namespace WitchPrincess
         {
             LocationEvents.CurrentLocationChanged += this.LocationEvents_CurrentLocationChanged;
             MenuEvents.MenuChanged += this.MenuEvents_MenuChanged;
+            MenuEvents.MenuChanged += this.MenuEvents_MenuChanged2;
         }
 
 
@@ -38,32 +39,138 @@ namespace WitchPrincess
                 this.LoadSpouseRoom();
         }
 
+
+        private void MenuEvents_MenuChanged2(object sender, EventArgsClickableMenuChanged e)
+        {
+            // check if player is married
+            if (Game1.player.spouse != "Wizard")
+                return;
+
+            // get Wizard dialogue
+            var dialogue = e.NewMenu as DialogueBox;
+            if (dialogue == null || Game1.currentSpeaker?.name != "Wizard")
+                return;
+
+            // get dialogue text
+            var dialogueStr = dialogue?.getCurrentString();
+
+
+            // get new text
+            int hearts = Game1.player.friendships["Wizard"][0] / NPC.friendshipPointsPerHeartLevel;
+            string NewText2 = null;
+            if (Game1.currentLocation is Farm && Game1.player.spouse == "Wizard" && (!dialogueStr.Contains("Wetter") && !dialogueStr.Contains("today") && !dialogueStr.Contains("weather") && !dialogueStr.Contains("天天") && !dialogueStr.Contains("dialogue") && !dialogueStr.Contains("fresh") && !dialogueStr.Contains("firsche") && !dialogueStr.Contains("空")))
+            {
+                if (hearts > 6)
+                    NewText2 = this.Helper.Translation.Get("dialogue.outdoor");
+                else
+                    NewText2 = this.Helper.Translation.Get("dialogue.outdoor.low-friendship");
+            }
+
+            // replace dialogue
+            if (NewText2 != null)
+                Game1.activeClickableMenu = new DialogueBox(new Dialogue(NewText2, Game1.getCharacterFromName("Wizard")));
+        }
+
+
+        private bool IsFestival(string season, int day)
+        {
+        return Game1.CurrentEvent.FestivalName != null && Game1.currentSeason == season && Game1.dayOfMonth == day;
+        }
+
         /// <summary>The method called after the current menu changes.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void MenuEvents_MenuChanged(object sender, EventArgsClickableMenuChanged e)
         {
-            // check dialogue conditions
+            // check if player is married
+            if (Game1.player.spouse != "Wizard")
+                return;
+            
+            // get Wizard dialogue
             var dialogue = e.NewMenu as DialogueBox;
             if (dialogue == null || Game1.currentSpeaker?.name != "Wizard" || Game1.CurrentEvent?.FestivalName == null)
                 return;
 
-            // check dialogue text
+            // get dialogue text
             var dialogueStr = dialogue?.getCurrentString();
-            if (!dialogueStr.Contains("用") && !dialogueStr.Contains("...") && !dialogueStr.Contains("sí") && !dialogueStr.Contains("么") && !dialogueStr.Contains("の"))
-                return;
 
-            // check for flower festival
-            var festivalData = this.Helper.Content.Load<Dictionary<string, string>>(@"Data\Festivals\spring24", ContentSource.GameContent);
-            if (!festivalData.TryGetValue("name", out string festivalName) || Game1.CurrentEvent.FestivalName != festivalName)
-                return;
 
-            // swap dialogue
-            Game1.activeClickableMenu = new DialogueBox(new Dialogue("hehehe..", Game1.getCharacterFromName("Wizard")));
-            string text = this.Helper.Translation.Get("laugh");
-            Game1.activeClickableMenu = new DialogueBox(new Dialogue(text, Game1.getCharacterFromName("Wizard")));
+            // get new text
+            int hearts = Game1.player.friendships["Wizard"][0] / NPC.friendshipPointsPerHeartLevel;
+            string newText = null;
+            if (this.IsFestival("summer", 11) && (dialogueStr.Contains("Las") || dialogueStr.Contains("日") || dialogueStr.Contains("Os") || dialogueStr.Contains("когда") || dialogueStr.Contains("curious") || dialogueStr.Contains("Festen") || dialogueStr.Contains("の"))) 
+            {
+                if (hearts < 6)
+                    newText = this.Helper.Translation.Get("dialogue.luau-festival.low-friendship");
+                else
+                    newText = this.Helper.Translation.Get("dialogue.luau-festival");
+            }
+
+            else if (this.IsFestival("summer", 28) && (dialogueStr.Contains("How") || dialogueStr.Contains("Cómo") || dialogueStr.Contains("Como") || dialogueStr.Contains("Как") || dialogueStr.Contains("么") || dialogueStr.Contains("Wie") || dialogueStr.Contains("の"))) 
+            {
+                if (hearts < 6)
+                    newText = this.Helper.Translation.Get("dialogue.jelly-festival.low-friendship");
+                else if (hearts < 9)
+                    newText = this.Helper.Translation.Get("dialogue.jelly-festival.medium-friendship");
+                else
+                    newText = this.Helper.Translation.Get("dialogue.jelly-festival");
+            }
+
+            else if (this.IsFestival("winter", 25) && (dialogueStr.Contains("...") || dialogueStr.Contains("日") || dialogueStr.Contains("の"))) 
+            {
+                if (hearts < 6)
+                    newText = this.Helper.Translation.Get("dialogue.winter-festival.low-friendship");
+                else
+                    newText = this.Helper.Translation.Get("dialogue.winter-festival");
+            }
+
+            else if (this.IsFestival("winter", 8) && (dialogueStr.Contains("偷") || dialogueStr.Contains("me") || dialogueStr.Contains("Te") || dialogueStr.Contains("вот") || dialogueStr.Contains("torre") || dialogueStr.Contains("du") || dialogueStr.Contains("の"))) 
+            {
+                if (hearts < 6)
+                    newText = this.Helper.Translation.Get("dialogue.ice-festival.low-friendship");
+                else
+                    newText = this.Helper.Translation.Get("dialogue.ice-festival");
+
+            }
+
+            else if (this.IsFestival("spring", 24) && (dialogueStr.Contains("...") || dialogueStr.Contains("用") || dialogueStr.Contains("sí") || dialogueStr.Contains("の"))) 
+            {
+                if (hearts < 6)
+                    newText = this.Helper.Translation.Get("dialogue.flower-festival.low-friendship");
+                else
+                    newText = this.Helper.Translation.Get("dialogue.flower-festival");
+            }
+
+            else if (this.IsFestival("spring", 13) && (dialogueStr.Contains("唔") || dialogueStr.Contains("...") || dialogueStr.Contains("の")))
+            {
+                if (hearts < 6)
+                    newText = this.Helper.Translation.Get("dialogue.egg-festival.low-friendship");
+                else
+                    newText = this.Helper.Translation.Get("dialogue.egg-festival");
+            }
+
+            else if (this.IsFestival("fall", 27) && (dialogueStr.Contains("唔") || dialogueStr.Contains("...") || dialogueStr.Contains("の")))
+            {
+                if (hearts < 6)
+                    newText = this.Helper.Translation.Get("dialogue.haloween-festival.low-friendship");
+                else
+                    newText = this.Helper.Translation.Get("dialogue.haloween-festival");
+            }
+
+            else if (this.IsFestival("fall", 16) && (dialogueStr.Contains("唔") || dialogueStr.Contains("...") || dialogueStr.Contains("の")))
+            {
+                if (hearts < 6)
+                    newText = this.Helper.Translation.Get("dialogue.fair-festival.low-friendship");
+                else
+                    newText = this.Helper.Translation.Get("dialogue.fair-festival");
+            }
+
+            // replace dialogue
+            if (newText != null)
+                Game1.activeClickableMenu = new DialogueBox(new Dialogue(newText, Game1.getCharacterFromName("Wizard")));
         }
 
+        
         /// <summary>Add the witch princess' spouse room to the farmhouse.</summary>
         public void LoadSpouseRoom()
         {
@@ -106,6 +213,7 @@ namespace WitchPrincess
 
                             farmhouse.map.GetLayer("Back").Tiles[staticTile.X + i, staticTile.Y + j].Properties.Add(prop);
                         }
+
                         catch
                         {
                             // ignore errors

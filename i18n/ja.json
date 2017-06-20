@@ -1,4 +1,5 @@
 {
   // Flower festival laughing
-  "laugh": "ふふふ"
+  "dialogue.flower-festival": "ふふふ。。$1",
+  "dialogue.flower-festival.low-friendship": "ふふふ。。$9"
 }
