@@ -54,10 +54,16 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ModEntry.cs" />
+    <Compile Include="WitchPrincess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\Maps\Beach-Luau.tbin" />
+    <None Include="assets\Maps\Forest-FlowerFestival.tbin" />
+    <None Include="assets\Maps\Forest-IceFestival.tbin" />
+    <None Include="assets\Maps\Town-Christmas.tbin" />
+    <None Include="assets\Maps\Town-EggFestival.tbin" />
+    <None Include="assets\Maps\Town-Halloween.tbin" />
     <None Include="Content\SRWitch.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -73,10 +79,14 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="assets\Characters\wizard.png" />
+    <Content Include="assets\Portraits\Wizard.png" />
+  </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Pathoschild.Stardew.ModBuildConfig.2.2.0\analyzers\dotnet\cs\StardewModdingAPI.ModBuildConfig.Analyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Pathoschild.Stardew.ModBuildConfig.2.2.0\build\Pathoschild.Stardew.ModBuildConfig.targets" Condition="Exists('..\packages\Pathoschild.Stardew.ModBuildConfig.2.2.0\build\Pathoschild.Stardew.ModBuildConfig.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
