@@ -1,0 +1,9 @@
+C:\Users\Sasara\source\repos\WitchPrincess-master\bin\Release\Content\SRWitch.xnb
+C:\Users\Sasara\source\repos\WitchPrincess-master\bin\Release\Content\WitchRoom.xnb
+C:\Users\Sasara\source\repos\WitchPrincess-master\bin\Release\manifest.json
+C:\Users\Sasara\source\repos\WitchPrincess-master\bin\Release\WitchPrincess.dll
+C:\Users\Sasara\source\repos\WitchPrincess-master\bin\Release\WitchPrincess.pdb
+C:\Users\Sasara\source\repos\WitchPrincess-master\obj\Release\WitchPrincess.csprojAssemblyReference.cache
+C:\Users\Sasara\source\repos\WitchPrincess-master\obj\Release\WitchPrincess.csproj.CoreCompileInputs.cache
+C:\Users\Sasara\source\repos\WitchPrincess-master\obj\Release\WitchPrincess.dll
+C:\Users\Sasara\source\repos\WitchPrincess-master\obj\Release\WitchPrincess.pdb
