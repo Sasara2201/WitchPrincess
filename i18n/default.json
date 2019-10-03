@@ -28,4 +28,35 @@
   // Outdoor (for fixing a dialogue bug)
   "dialogue.outdoor": "The weather is nice today, isn't it?$7#$b#I have some things to do today, but I am happy to be able to rest a bit.",
   "dialogue.outdoor.low-friendship": "The fresh air is nice.$7#$b#I will be busy today.$9",
+
+  //XNB changes
+  "dialogue.Dialogue1":"",
+  "dialogue.Dialogue2":"",
+  "dialogue.Dialogue3":"",
+  "dialogue.Dialogue4":"",
+  "dialogue.Dialogue5":"",
+  "dialogue.Dialogue6":"",
+  "dialogue.Dialogue7":"",
+  "dialogue.Dialogue8":"",
+  "dialogue.Dialogue9":"",
+  "dialogue.Dialogue10":"",
+  "dialogue.Dialogue11":"",
+  "dialogue.Dialogue12":"",
+  "Data.Quests": "",
+  "Data.NPCDisposition": "teen/rude/neutral/negative/female/datable/null/Other/winter 17//WizardHouse 3 17/Witch Princess",
+  "Data.Mail": "",
+  "dialogue.Engagement": "",
+  "dialogue.Spring13": "",
+  "dialogue.Spring24": "",
+  "dialogue.Summer28": "",
+  "dialogue.Winter8": "",
+  "dialogue.schedules": "",
+  "dialogue.ExtraDialogue": "",
+  "dialogue.Event-WizardHouse": "",
+  "dialogue.Event-Railroad": "",
+
+
+
+
+
   }
